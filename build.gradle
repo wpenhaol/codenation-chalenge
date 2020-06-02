@@ -1,0 +1,75 @@
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "gradle.plugin.com.github.viswaramamoorthy:gradle-util-plugins:0.1.0-RELEASE"
+    }
+}
+
+plugins {
+    id 'org.springframework.boot' version '2.1.5.RELEASE'
+    id 'java'
+    id 'jacoco'
+    id "com.github.ManifestClasspath" version "0.1.0-RELEASE"
+}
+
+group = 'br.com.codenation.app'
+version = '1.0-SNAPSHOT'
+sourceCompatibility = '1.8'
+apply plugin: 'application'
+mainClassName = 'br.com.codenation.app.Application'
+
+ext {
+    set('springCloudVersion', 'Greenwich.SR1')
+}
+
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'jacoco'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    compileOnly 'org.projectlombok:lombok'
+    compile 'org.projectlombok:lombok'
+    testCompile group: 'org.mockito', name: 'mockito-core', version: '2.27.0'
+    annotationProcessor 'org.projectlombok:lombok'
+    testCompile group: 'org.apache.commons', name: 'commons-lang3', version: '3.9'
+    compile group: 'com.google.code.gson', name: 'gson', version: '2.8.5'
+    compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
+    compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
+    compile group: 'org.apache.poi', name: 'poi', version: '4.1.0'
+    compile group: 'org.apache.poi', name: 'poi-ooxml', version: '4.1.0'
+    testCompile group: 'org.mockito', name: 'mockito-core', version: '2.27.0'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+    compile group: 'org.owasp.esapi', name: 'esapi', version: '2.2.0.0'
+    testCompile group: 'org.springframework.cloud', name: 'spring-cloud-contract-wiremock'
+    compile group: 'commons-codec', name: 'commons-codec', version: '1.14'
+    compile 'io.github.openfeign.form:feign-form:3.8.0'
+}
+
+jacoco {
+    toolVersion = '0.8.2'
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
+}
+
+apply plugin: "com.github.ManifestClasspath"

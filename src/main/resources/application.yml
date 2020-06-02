@@ -1,0 +1,19 @@
+server:
+  port: ${SPRING_PORT_SERVER:8081}
+  connection-timeout: ${SPRING_TIMEOUT_SERVER:30000}
+  servlet:
+    context-path: /api/codenation
+spring:
+  application:
+    name: codenation-chalenge
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+chalenge:
+  token: c51f1ee3187a40b440f57a63a9815fbbd207994e
+  request: https://api.codenation.dev/v1/challenge/dev-ps
+path:
+  req:
+    chalenge:
+      process: /chalenge
