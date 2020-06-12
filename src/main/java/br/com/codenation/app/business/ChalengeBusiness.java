@@ -73,7 +73,7 @@ public class ChalengeBusiness {
         Arrays.asList(AlphabetEnumeration.values()).forEach(alphabetEnumeration -> {
             Integer index = getIndexEnumeration(alphabetEnumeration.getIndex(), chalenge.getNumero_casas());
             String code = AlphabetEnumeration.values()[index].name().toLowerCase();
-            log.info("INDEX: {}, ENCODE: {}, DECODE: {}", index, code.toUpperCase(), alphabetEnumeration.name());
+            log.info("[[ DECODING TEXT ]] INDEX: {}, ENCODE: {}, DECODE: {}", index, code.toUpperCase(), alphabetEnumeration.name());
             textEncrypted[0] = textEncrypted[0].replaceAll(code, alphabetEnumeration.name());
         });
 
