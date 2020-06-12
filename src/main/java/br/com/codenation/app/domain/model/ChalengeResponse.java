@@ -6,4 +6,5 @@ import lombok.Data;
 public class ChalengeResponse {
 
     private Integer score;
+    private Chalenge chalenge;
 }

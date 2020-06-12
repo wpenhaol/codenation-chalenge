@@ -1,6 +1,7 @@
 package br.com.codenation.app.controller;
 
 import br.com.codenation.app.business.ChalengeBusiness;
+import br.com.codenation.app.domain.model.ChalengeResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,7 +23,7 @@ public class ChalengeController {
     private ChalengeBusiness chalengeBusiness;
 
     @GetMapping()
-    public ResponseEntity<Object> getAdministratorByIdentification() throws IOException {
+    public ResponseEntity<ChalengeResponse> getAdministratorByIdentification() throws IOException {
 
         return ResponseEntity.status(HttpStatus.OK).body(chalengeBusiness.getChalengeInfoToProcess());
     }

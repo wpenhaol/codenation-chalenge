@@ -45,7 +45,7 @@ public class ChalengeBusiness {
         saveJsonWithInformationData(chalenge);
         log.info("[[ DATA OF TO PROCESS ]]: {} ...", chalenge);
 
-        return sendInformationOfChalend();
+        return sendInformationOfChalend(chalenge);
 
     }
 
@@ -105,12 +105,13 @@ public class ChalengeBusiness {
      * @return
      * @throws IOException
      */
-    private ChalengeResponse sendInformationOfChalend() throws IOException {
+    private ChalengeResponse sendInformationOfChalend(Chalenge chalenge) throws IOException {
         File file = new File("./src/main/resources/answer.json");
         byte[] fileContent = Files.readAllBytes(file.toPath());
         FormData formData = new FormData("text/json", "answer.json", fileContent);
         ChalengeResponse chalengeResponse = chalengeService.sendInformationToProcessSolution(token, formData);
-        log.info("[[ RECEIVE THIS RESPONSE TO SUBMIT FILE FOR VALIDADE ]] {} ", chalengeResponse);
+        log.info("[[ RECEIVE THIS RESPONSE IN PROCESS SUBMIT FILE FOR VALIDADE ]] {} ", chalengeResponse);
+        chalengeResponse.setChalenge(chalenge);
         return chalengeResponse;
     }
 
